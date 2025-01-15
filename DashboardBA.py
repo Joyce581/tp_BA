@@ -2,7 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt 
 # Lire le fichier Excel
-df = pd.read_excel('votre_fichier.xlsx')
+df = pd.read_excel('data_dashboard_large-data_dashboard')
 
 # Calculer le total des ventes
 total_ventes = df['Ventes_en_euros'].sum()
