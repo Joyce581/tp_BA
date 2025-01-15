@@ -1,6 +1,6 @@
 
 import pandas as pd
-
+import matplotlib.pyplot as plt 
 # Lire le fichier Excel
 df = pd.read_excel('votre_fichier.xlsx')
 
