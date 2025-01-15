@@ -21,6 +21,17 @@ if uploaded_file is not None:
     # Affichage du total des ventes
     st.write("Total des ventes calculé pour chaque ligne:")
     st.dataframe(df[['Total des Ventes']])
-    
+
+import pandas as pd
+
+# Lire le fichier Excel
+df = pd.read_excel('votre_fichier.xlsx')
+
+# Calculer le total des ventes
+total_ventes = df['Ventes_en_euros'].sum()
+
+# Afficher le total des ventes
+print(f"Total des ventes en euros : {total_ventes}")
+
   
 
