@@ -6,7 +6,7 @@ import altair as alt
 st.title("Dashboard Interactif des Performances de Vente")
 
 # Téléchargement du fichier CSV
-uploaded_file = st.file_uploader("Choisissez un fichier CSV", type=["csv"])
+uploaded_file = st.file_uploader("data_dashboard_large-data_dashboard_large", type=["csv"])
 
 if uploaded_file is not None:
     # Lecture du fichier CSV
