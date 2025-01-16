@@ -10,7 +10,7 @@ uploaded_file = st.file_uploader("data_dashboard_large-data_dashboard_large(1)",
 
 if uploaded_file is not None:
     # Lecture du fichier CSV
-    df = pd.read_csv(uploaded_file)
+    df = pd.read_csv(data_dashboard_large-data_dashboard_large(1))
 
     # Section Résumé
     st.header("Vue d'ensemble (Section Résumé)")
@@ -146,4 +146,5 @@ if uploaded_file is not None:
         color='Score:N'
     )
     st.altair_chart(distribution_satisfaction_chart, use_container_width=True)
-
+# Pour exécuter l'application Streamlit:
+# streamlit run .py
