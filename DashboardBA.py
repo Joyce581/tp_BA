@@ -1,3 +1,4 @@
+pip install streamlit pandas altair
 import streamlit as st
 import pandas as pd
 import altair as alt
@@ -6,7 +7,7 @@ import altair as alt
 st.title("Dashboard Interactif des Performances de Vente")
 
 # Téléchargement du fichier CSV
-uploaded_file = st.file_uploader("data_dashboard_large-data_dashboard_large", type=["csv"])
+uploaded_file = st.file_uploader("data_dashboard_large-data_dashboard_large(1)", type=["csv"])
 
 if uploaded_file is not None:
     # Lecture du fichier CSV
@@ -71,7 +72,7 @@ if uploaded_file is not None:
     # Analyse des catégories de produits
     st.header("Analyse des catégories de produits")
     
-    # Histogramme des quantités vendues par catégorie
+    # Quantités vendues par catégorie
     st.subheader("Quantités vendues par catégorie")
     quantites_par_categorie = df.groupby('Categorie_Produit')['Quantite'].sum().reset_index()
     quantites_par_categorie_chart = alt.Chart(quantites_par_categorie).mark_bar().encode(
@@ -81,7 +82,7 @@ if uploaded_file is not None:
     )
     st.altair_chart(quantites_par_categorie_chart, use_container_width=True)
     
-    # Graphique empilé des montants des ventes par catégorie et magasin
+    # Montants des ventes par catégorie et magasin
     st.subheader("Montants des ventes par catégorie et magasin")
     ventes_categorie_magasin = df.groupby(['Categorie_Produit', 'Magasin'])['Montant'].sum().reset_index()
     ventes_categorie_magasin_chart = alt.Chart(ventes_categorie_magasin).mark_bar().encode(
@@ -91,7 +92,7 @@ if uploaded_file is not None:
     )
     st.altair_chart(ventes_categorie_magasin_chart, use_container_width=True)
     
-    # Tableau des 5 produits les plus vendus par catégorie
+    # Top 5 des produits les plus vendus par catégorie
     st.subheader("Top 5 des produits les plus vendus par catégorie")
     top_5_produits = df.groupby(['Categorie_Produit', 'ID_Client']).agg({'Quantite': 'sum'}).reset_index().sort_values(by='Quantite', ascending=False).groupby('Categorie_Produit').head(5)
     st.write("Top 5 produits")
@@ -117,7 +118,7 @@ if uploaded_file is not None:
     # Analyse de la satisfaction client
     st.header("Analyse de la satisfaction client")
 
-    # Moyenne de satisfaction par magasin et par catégorie
+    # Moyenne de satisfaction par magasin
     st.subheader("Moyenne de satisfaction par magasin")
     satisfaction_par_magasin = df.groupby('Magasin')['Satisfaction_Client'].mean().reset_index()
     satisfaction_par_magasin_chart = alt.Chart(satisfaction_par_magasin).mark_bar().encode(
@@ -127,6 +128,7 @@ if uploaded_file is not None:
     )
     st.altair_chart(satisfaction_par_magasin_chart, use_container_width=True)
     
+    # Moyenne de satisfaction par catégorie
     st.subheader("Moyenne de satisfaction par catégorie")
     satisfaction_par_categorie = df.groupby('Categorie_Produit')['Satisfaction_Client'].mean().reset_index()
     satisfaction_par_categorie_chart = alt.Chart(satisfaction_par_categorie).mark_bar().encode(
@@ -145,3 +147,4 @@ if uploaded_file is not None:
         color='Score:N'
     )
     st.altair_chart(distribution_satisfaction_chart, use_container_width=True)
+
