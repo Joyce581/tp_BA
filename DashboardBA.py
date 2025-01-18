@@ -35,12 +35,13 @@ satisfaction_moyenne = data_filtre['Satisfaction_Client'].mean()
 
 # Analyse par magasin
 st.header("Analyse par magasin")
-ventes_par_magasin = data.groupby('Magasin')['Montant'].sum().reset_index()
-ventes_par_magasin_chart = alt.Chart(ventes_par_magasin).mark_arc().encode(
-    theta=alt.Theta(field="Montant", type="quantitative"),
-    color=alt.Color(field="Magasin", type="nominal")
-).properties(title='Répartition des ventes par magasin')
-st.altair_chart(ventes_par_magasin_chart, use_container_width=True)
+col1, col2 = st.columns(2) 
+with col1: 
+    st.subheader("Répartition des ventes par magasin") 
+    st.altair_chart(ventes_par_magasin_chart, use_container_width=True)
+with col2: 
+    st.subheader("Montant moyen par transaction pour chaque magasin") 
+    st.altair_chart(montant_moyen_magasin_chart, use_container_width=True)
 
 # Montant moyen par transaction pour chaque magasin
 montant_moyen_magasin = data.groupby('Magasin')['Montant'].mean().reset_index()
